@@ -35,6 +35,14 @@ const merge = <T>(arr1: T[], arr2: T[], callback: mergeCallback<T>): T[] => {
 	return combined;
 };
 
+/**
+ * Sorts an array defined by the user using merge sort
+ *
+ * @param arr any type of array
+ * @param callback defines what direction to sort and of what value
+ * @returns sorted array defined by the callback
+ *
+ */
 const mergeSort = <T>(arr: T[], callback: mergeCallback<T>): T[] => {
 	const arrLen = arr.length;
 	if (arrLen <= 1) return arr; // this is when we stop splitting
@@ -48,7 +56,19 @@ const mergeSort = <T>(arr: T[], callback: mergeCallback<T>): T[] => {
 	return merge(lhsideSort, rhsideSort, callback);
 };
 
-const main = () => {
+const exampleUse = () => {
+	const unsortedArray = [4, 3, 2, 1, 6, 8];
+	const ascending = mergeSort(unsortedArray, (item1, item2) => item1 < item2);
+	const descending = mergeSort(
+		unsortedArray,
+		(item1, item2) => item2 < item1
+	);
+	console.log("Unsorted", unsortedArray);
+	console.log("Ascending", ascending);
+	console.log("Descending", descending);
+};
+
+const timer = () => {
 	let arr = [];
 	const n = 10000000;
 	for (let i = 0; i < n; i++) arr.push(Math.random());
@@ -64,9 +84,6 @@ const main = () => {
 	console.time(native);
 	const result2 = arr.sort((a, b) => a - b);
 	console.timeEnd(native);
-
-	// console.log(result1);
-	// console.log(result2);
 };
 
-main(); //execute the main method
+exampleUse();

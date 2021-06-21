@@ -48,6 +48,14 @@ const merge = (arr1, arr2, callback) => {
 	const combined = result.concat(entriesLeft);
 	return combined;
 };
+/**
+ * Sorts an array defined by the user using merge sort
+ *
+ * @param arr any type of array
+ * @param callback defines what direction to sort and of what value
+ * @returns sorted array defined by the callback
+ *
+ */
 const mergeSort = (arr, callback) => {
 	const arrLen = arr.length;
 	if (arrLen <= 1) return arr; // this is when we stop splitting
@@ -58,4 +66,15 @@ const mergeSort = (arr, callback) => {
 	const rhsideSort = mergeSort(rhside, callback);
 	return merge(lhsideSort, rhsideSort, callback);
 };
+```
+
+## Example Use Case
+
+```javascript
+const unsortedArray = [4, 3, 2, 1, 6, 8];
+const ascending = mergeSort(unsortedArray, (item1, item2) => item1 < item2);
+const descending = mergeSort(unsortedArray, (item1, item2) => item2 < item1);
+console.log("Unsorted", unsortedArray);
+console.log("Ascending", ascending);
+console.log("Descending", descending);
 ```
