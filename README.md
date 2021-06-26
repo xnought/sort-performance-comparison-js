@@ -72,8 +72,8 @@ const mergeSort = (arr, callback) => {
 
 ```javascript
 const unsortedArray = [4, 3, 2, 1, 6, 8];
-const ascending = mergeSort(unsortedArray, (item1, item2) => item1 < item2);
-const descending = mergeSort(unsortedArray, (item1, item2) => item2 < item1);
+const ascending = mergeSort(unsortedArray, (a, b) => a < b);
+const descending = mergeSort(unsortedArray, (a, b) => b < a);
 console.log("Unsorted", unsortedArray);
 console.log("Ascending", ascending);
 console.log("Descending", descending);
