@@ -58,11 +58,8 @@ const mergeSort = <T>(arr: T[], callback: mergeCallback<T>): T[] => {
 
 const exampleUse = () => {
 	const unsortedArray = [4, 3, 2, 1, 6, 8];
-	const ascending = mergeSort(unsortedArray, (item1, item2) => item1 < item2);
-	const descending = mergeSort(
-		unsortedArray,
-		(item1, item2) => item2 < item1
-	);
+	const ascending = mergeSort(unsortedArray, (a, b) => a < b);
+	const descending = mergeSort(unsortedArray, (a, b) => b < a);
 	console.log("Unsorted", unsortedArray);
 	console.log("Ascending", ascending);
 	console.log("Descending", descending);
@@ -76,7 +73,7 @@ const timer = () => {
 	console.log(`n = ${n}`);
 	const mySort = "Implemented Merge sort";
 	console.time(mySort);
-	const result1 = mergeSort(arr, (item1, item2) => item1 < item2);
+	const result1 = mergeSort(arr, (a, b) => a < b);
 	console.timeEnd(mySort);
 
 	//compare against native support for sorting (they use quicksort)
@@ -86,4 +83,4 @@ const timer = () => {
 	console.timeEnd(native);
 };
 
-exampleUse();
+timer();
