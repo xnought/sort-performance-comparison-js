@@ -46,13 +46,18 @@ const merge = <T>(arr1: T[], arr2: T[], callback: mergeCallback<T>): T[] => {
 const mergeSort = <T>(arr: T[], callback: mergeCallback<T>): T[] => {
 	const arrLen = arr.length;
 	if (arrLen <= 1) return arr; // this is when we stop splitting
-	const middle = Math.floor(arrLen / 2);
-	const lhside = arr.slice(0, middle);
-	const rhside = arr.slice(middle, arrLen);
 
-	const lhsideSort = mergeSort(lhside, callback);
-	const rhsideSort = mergeSort(rhside, callback);
+	const middle = Math.floor(arrLen / 2); //find the where to split
 
+	// split into two arrays
+	const lhside = arr.slice(0, middle),
+		rhside = arr.slice(middle, arrLen);
+
+	// call mergeSort on both sides
+	const lhsideSort = mergeSort(lhside, callback),
+		rhsideSort = mergeSort(rhside, callback);
+
+	// merge two sorted arrays
 	return merge(lhsideSort, rhsideSort, callback);
 };
 
